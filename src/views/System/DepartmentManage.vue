@@ -74,9 +74,7 @@ const deleteDepartment = async (params: any) => {
 // 打开 drawer（新增/编辑）
 const dialogRef = ref()
 const openDrawer = (title: string, row: Partial<any> = {}) => {
-  console.log('触发 openDrawer，标题：', title) // 新增时应打印 "新增"
-  console.log('传递的 row 数据：', row) // 新增时 row 应为 {}
-  const params = {
+  let params = {
     title,
     row: { ...row },
     isView: title === '查看',
