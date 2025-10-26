@@ -69,8 +69,10 @@ import { getRoleList } from '@/api/modules/role'
 import { getManagerInfoApi } from '@/api/modules/manager'
 import { useAppStoreWithOut } from '@/store/modules/app'
 import { useDepartmentStore } from '@/store/modules/department'
+import { useCustomerStore } from '@/store/modules/customer'
 const appStore = useAppStoreWithOut()
 const departmentStore = useDepartmentStore()
+const customerStore = useCustomerStore()
 const departmentList = departmentStore.departmentList
 interface DialogProps {
   title: string
@@ -166,6 +168,7 @@ const handleSubmit = () => {
       })
       ElMessage.success({ message: `${dialogProps.value.title}管理员成功！` })
       dialogProps.value.getTableList!()
+      customerStore.triggerRefresh()
       dialogVisible.value = false
       ruleFormRef.value!.resetFields()
       cancelDialog(true)
